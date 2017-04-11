@@ -57,6 +57,8 @@ io.on('connection', function(socket){
     });
 });
 
-http.listen(3000, function(){
+http.listen(process.env.PORT || 5000, function(){
     console.log("escuchando en el puerto 3000 :v como andre 3000 ay si");
 });
+
+/**/
