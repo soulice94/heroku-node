@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Hotline Bling :v</title>
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+      <link rel="stylesheet" href="/mdl/material.deep_purple-pink.min.css">
+      <script src="/mdl/material.min.js"></script>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="controlador.js"></script>
+      <style>
+         .alert {
+         padding: 20px;
+         background-color: #f44336; /* Red */
+         color: white;
+         margin-bottom: 15px;
+         display: none;
+         opacity: 1;
+         transition: opacity 0.5s;
+         }
+         .celda{
+            display: none;
+         }
+         body{
+            background-color: #00E5FF;
+         }
+         .proto-mensaje{
+            width: 95%;
+            height: 60px;
+            margin-bottom: 100px;
+         }
+         .mensaje-head{
+            width: inherit;
+            height: 10px;
+            border-radius: 15px 15px 0px 0px;
+            padding: 20px; 
+            color: white;
+         }
+         .mensaje-body{
+            width: inherit;
+            height: 50px;
+            border-radius: 0px 0px 15px 15px;
+            padding: 20px;
+            background: white;
+         }
+      </style>
+   </head>
+   <body>
+      <div ng-app="chat" ng-controller="principal">
+         <div id="error-container" class="alert">{{mensaje_error}}</div>
+         <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col"></div>
+            <div class="mdl-cell mdl-cell--2-col">
+               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" id="nombre" type="text" value="" ng-model="mensaje.usuario">
+                  <label class="mdl-textfield__label" for="nombre">Ingresa tu nombre</label>
+               </div>
+            </div>
+            <div class="mdl-cell mdl-cell--2-col">
+               <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="button" name="boton" ng-click="asigna_nombre()" style="width:100%;">
+                  Dejame entrar :v
+               </button>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col"></div>
+         </div>
+         <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col"></div>
+            <div class="mdl-cell mdl-cell--4-col"><h1>Mensajes</h1></div>
+            <div class="mdl-cell mdl-cell--4-col"></div>
+         </div>
+         <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col"></div>
+            <div class="mdl-cell mdl-cell--4-col">
+               <div class="proto-mensaje" ng-repeat="m in mensajes">
+                  <div class="mensaje-head" style="background:{{m.color}};">{{m.usuario}}</div>
+                  <div class="mensaje-body">{{m.contenido}}</div>
+               </div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col"></div>
+         </div>
+          <div id="panel" class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col"></div>
+            <div class="mdl-cell mdl-cell--2-col celda" name="celda">
+               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" id="message" ng-model="mensaje.contenido">
+                  <label class="mdl-textfield__label" for="nombre">Mensaje</label>
+               </div>
+            </div>
+            <div class="mdl-cell mdl-cell--2-col celda" name="celda">
+               <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="button" ng-click="envia_mensaje()" style="width:100%;">
+               Envia
+               </button>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col"></div>
+         </div>
+      </div>
+   </body>
+</html>
